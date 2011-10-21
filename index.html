@@ -1,75 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-  <meta charset='utf-8'>
-
-  <title>leecade/keydown @ GitHub</title>
-
-  <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #00da31;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #ffffff;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-    h1 { font-size: 3.8em; color: #ff25ce; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #ff25ce; }
-    h3 { text-align: center; color: #ff25ce; }
-    a { color: #ff25ce; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-  </style>
+<meta charset="utf-8"/>
+<title>g.keydown</title>
+<style>
+body,p,b,dl,dd,table,td,th,input,button,textarea,xmp,pre,img,form,div,ul,ol,li,h1,h2,h3,h4,h5,h6{margin:0;padding:0}img,iframe,acronym{border:0}ol,ul,li{list-style:none}img,input,label,button{vertical-align:middle}table{border-collapse:collapse;border-spacing:0;width:100%}address,caption,cite,code,dfn,em,strong,th,var,b,i{font-style:normal;font-weight:normal}button,input,select,textarea{font-size:100%}body{_zoom:expression(function(el){document.execCommand('BackgroundImageCache',false,true);el.style.zoom = "1"}(this))}
+button{ cursor:pointer;}
+::-moz-focus-inner{ border:none;}
+:focus{ outline:none;}
+</style>
 </head>
-
 <body>
-  <a href="http://github.com/leecade/keydown"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-
-  <div id="container">
-
-    <div class="download">
-      <a href="http://github.com/leecade/keydown/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/leecade/keydown/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
-    </div>
-
-    <h1><a href="http://github.com/leecade/keydown">keydown</a>
-      <span class="small">by <a href="http://github.com/leecade">leecade</a></span></h1>
-
-    <div class="description">
-      
-    </div>
-
-    <h2>Contact</h2>
-<p>斯人 (yuji@baidu.com)<br/>      </p>
-
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="http://github.com/leecade/keydown/zipball/master">zip</a> or
-      <a href="http://github.com/leecade/keydown/tarball/master">tar</a> formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/leecade/keydown</pre>
-    </p>
-
-    <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/leecade/keydown">leecade/keydown</a>
-    </div>
-
-  </div>
-
-  
+preview and wait...<br>
+<p>我操被别人抢先发布了类似的，放个预览的，你懂的，按按钮简单eval测试下：</p>
+<textarea id="textInput" style="width:500px; height:200px;">
+G.keydown.on("Ctrl + A", function(e) {alert(e)}).un("Ctrl + A").on("Ctrl + g", function(e) {alert(e)}).on("F", function(e) {alert(e)}).on("Ctrl + f", function(e) {alert("阻止一些功能键"); });
+</textarea>
+<br>
+<button id="textBtn">Eval</button>
 </body>
+<script src="src/g.keydown.js"></script>
+<script>
+G.keydown.on("Ctrl + A", function(e) {alert(e)}).un("Ctrl + A").on("Ctrl + g", function(e) {alert(e)}).on("F", function(e) {alert(e)}).on("Ctrl + f", function(e) {alert("阻止一些功能键"); });
+
+document.getElementById("textBtn").onclick = function() {
+	var win = window,
+		s = document.getElementById("textInput").value;
+	s + "" === s && /\S/.test(s) && (win.execScript || function() {
+		win["eval"].call(win, s);
+	})(s);
+}
+</script>
 </html>
